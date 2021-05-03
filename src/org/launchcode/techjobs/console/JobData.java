@@ -7,9 +7,8 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -81,6 +80,38 @@ public class JobData {
             }
         }
 
+        return jobs;
+    }
+    public static ArrayList findByColumn(String value){
+        loadData();
+        value = value.toLowerCase(Locale.ROOT);
+        ArrayList jobs = new ArrayList();
+
+        for (int i = 0; i < allJobs.size(); i++) {
+            if(jobs.contains(value)){
+                continue;
+            }
+            if(allJobs.get(i).get("position type").toLowerCase(Locale.ROOT).contains(value)){
+                jobs.add(allJobs.get(i));
+            }
+            else if ((allJobs.get(i).get("name").toLowerCase(Locale.ROOT).contains(value))){
+                jobs.add(allJobs.get(i));
+            }
+            else if ((allJobs.get(i).get("employer").toLowerCase(Locale.ROOT).contains(value))){
+                jobs.add(allJobs.get(i));
+            }
+            else if ((allJobs.get(i).get("location").toLowerCase(Locale.ROOT).contains(value))){
+                jobs.add(allJobs.get(i));
+            }
+            else if ((allJobs.get(i).get("core competency").toLowerCase(Locale.ROOT).contains(value))){
+                jobs.add(allJobs.get(i));
+            }
+
+        }
+
+        if (jobs.isEmpty()){
+            System.out.println("No jobs found");
+        }
         return jobs;
     }
 
