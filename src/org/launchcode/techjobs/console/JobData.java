@@ -72,41 +72,37 @@ public class JobData {
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
-
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (value.equalsIgnoreCase(aValue)) {
                 jobs.add(row);
             }
+
+//            if (aValue.contains(value)) {
+//                jobs.add(row);
+//            }
         }
 
+        if (jobs.isEmpty()){
+            System.out.println("No jobs found");
+        }
         return jobs;
     }
     public static ArrayList findByColumn(String value){
         loadData();
         value = value.toLowerCase(Locale.ROOT);
         ArrayList jobs = new ArrayList();
+        Object[] jobCategories = allJobs.get(0).keySet().toArray();
 
         for (int i = 0; i < allJobs.size(); i++) {
             if(jobs.contains(value)){
                 continue;
             }
-            if(allJobs.get(i).get("position type").toLowerCase(Locale.ROOT).contains(value)){
-                jobs.add(allJobs.get(i));
+            for (int j = 0; j < jobCategories.length; j++) {
+                if (allJobs.get(i).get(jobCategories[j]).toLowerCase(Locale.ROOT).contains(value)) {
+                    jobs.add(allJobs.get(i));
+                }
             }
-            else if ((allJobs.get(i).get("name").toLowerCase(Locale.ROOT).contains(value))){
-                jobs.add(allJobs.get(i));
-            }
-            else if ((allJobs.get(i).get("employer").toLowerCase(Locale.ROOT).contains(value))){
-                jobs.add(allJobs.get(i));
-            }
-            else if ((allJobs.get(i).get("location").toLowerCase(Locale.ROOT).contains(value))){
-                jobs.add(allJobs.get(i));
-            }
-            else if ((allJobs.get(i).get("core competency").toLowerCase(Locale.ROOT).contains(value))){
-                jobs.add(allJobs.get(i));
-            }
-
         }
 
         if (jobs.isEmpty()){

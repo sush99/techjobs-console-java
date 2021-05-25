@@ -114,13 +114,12 @@ public class TechJobs {
 //        System.out.println(someJobs.get(1).size());
 
         for (int i = 0; i < someJobs.size(); i++) {
-            System.out.println("******************");
+            System.out.println("******************\n");
             System.out.println(String.format("position type: %s",someJobs.get(i).get("position type")));
             System.out.println(String.format("Name: %s",someJobs.get(i).get("name")));
             System.out.println(String.format("employer: %s",someJobs.get(i).get("employer")));
             System.out.println(String.format("location: %s",someJobs.get(i).get("location")));
             System.out.println(String.format("core competency: %s",someJobs.get(i).get("core competency")));
-            System.out.println("******************");
         }
 //        System.out.println("printJobs is not implemented yet");
     }
